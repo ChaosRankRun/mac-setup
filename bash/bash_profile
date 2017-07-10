@@ -1,0 +1,4 @@
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
+export PS1="\[$(tput bold)\]\[$(tput setaf 7)\]\h\[$(tput setaf 4)\]-\[$(tput setaf 6)\]\t:\[$(tput setaf 7)\]\W\[$(tput setaf 5)\]\\$ \[$(tput sgr0)\]"

@@ -1,0 +1,36 @@
+set nocompatible    " be iMproved. required vundle
+filetype off        " required vundle
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle. required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'derekwyatt/vim-scala'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+syntax on
+colorscheme delek
+set tabstop=4
+" size of hard tabstop
+
+" size of an "indent"
+set shiftwidth=4
+
+" a combination of spaces and tabs are used to simulate tab stops at a width
+set softtabstop=4 " other than (hard)tabstop
+set smarttab " make "tab" insert indents instead of tabs at the beginning of a line
+set expandtab " always uses spaces instead of tab characters
+
+set number " always show line numbers
+set showmatch " set show matching parenthesis
+
+set mouse=a " enable using the mouse if terminal emulator supports it (xterm does)
+
+set wildmenu    "make tab completion for files/buffers act like bash
+set wildmode=longest,list    " complete as much as possible, second show a list when pressing tab; bash style
+
+set mouse= "disable mouse mode"

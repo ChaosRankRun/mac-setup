@@ -1,0 +1,2 @@
+# OS X requires one line for this
+input { tcp { port => 4560 codec => json_lines type => "logger" }} output { file { path => "/var/log/logstash/logger.log" }}
