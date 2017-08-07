@@ -3,10 +3,8 @@
 #/ Usage: setup.sh [--debug]
 
 # TODO
-#	1. xcode setup
-#	2. git user name and email	
-#	3. mac os x software update
-#	4. setup logstash
+#	1. git user name and email	
+#	2. setup logstash
 
 set -e
 
@@ -92,9 +90,9 @@ copy_dot_files () {
 
 
 install_pip () {
-    echo "--> install pip"
+    echo "--> checking pip"
     if ! type "pip" &> /dev/null; then
-        echo "--> ready to install"
+        echo "--> install pip"
         sudo easy_install pip
     fi
 }
@@ -120,6 +118,22 @@ install_xcode () {
     fi
 }
 
+install_awscli () {
+    echo "--> checking awscli"
+    if ! type "aws" &> /dev/null; then
+        echo "--> install awscli"
+        pip install awscli==1.11
+    fi
+}
+
+install_s3cmd () {
+    echo "--> checking s3cmd"
+    if ! type "s3cmd" &> /dev/null; then
+        echo "--> install s3cmd"
+        pip install s3cmd==2.0
+    fi
+}
+
 setup () {
 	if [ "$USER" = "root" ]; then
 		echo "==> failed user"
@@ -135,6 +149,8 @@ setup () {
     install_vundle
     install_xcode
     install_pip
+    install_awscli
+    install_s3cmd
 
 	echo "--> System is set up"	
 }
