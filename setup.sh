@@ -69,7 +69,7 @@ run_homebrew () {
 	local HOMEBREW="$(BREW --prefix 2>/dev/null || echo "/usr/local")"
 	local HOMBREW_REPO="$(brew --repository 2>/dev/null || true)"
 
-	if [[ ! $(type "brew" &>/dev/null) ]]; then
+	if ! type brew &> /dev/null; then
 		echo "--> Installing Homebrew:"
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	fi
@@ -93,7 +93,7 @@ copy_dot_files () {
 
 install_pip () {
     echo "--> install pip"
-    if [[ ! $(type "pip" &>/dev/null) ]]; then
+    if ! type "pip" &> /dev/null; then
         echo "--> ready to install"
         sudo easy_install pip
     fi
@@ -101,10 +101,22 @@ install_pip () {
 
 install_vundle () {
     echo "--> checking vundle"
-    if [ ! -d "~/.vim/bundle/Vundle.vim" ]; then
+    if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
         echo "--> installing vundle"
         git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
         vim +PluginInstall +qall
+    fi
+}
+
+install_xcode () {
+    echo "--> software update for mac"
+    softwareupdate -ia
+
+    echo "--> checking xcode"
+    XCODE_DIR=$("xcode-select" -print-path 2>/dev/null || true)
+    if [ -z $XCODE_DIR ]; then
+        echo "--> install xcode"
+        xcode-select --install
     fi
 }
 
@@ -121,6 +133,8 @@ setup () {
 	run_homebrew
 	copy_dot_files
     install_vundle
+    install_xcode
+    install_pip
 
 	echo "--> System is set up"	
 }
