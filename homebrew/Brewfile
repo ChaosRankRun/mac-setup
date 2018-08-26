@@ -25,7 +25,7 @@ cask 'spectacle'
 cask 'sourcetree'
 cask 'sequel-pro'
 cask 'sqlworkbenchj'
-cask 'google-drive'
+cask 'google-drive-file-stream'
 cask 'dropbox'
 
 # Logging
